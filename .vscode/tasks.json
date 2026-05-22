@@ -1,0 +1,71 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "ninja",
+      "args": ["-C", "${workspaceFolder}/build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent",
+        "clear": true
+      },
+      "problemMatcher": {
+        "owner": "gcc",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.+):(\\d+):(\\d+):\\s+(warning|error):\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+    {
+      "label": "setup (first run only)",
+      "type": "shell",
+      "command": "meson setup build --wipe",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build-release",
+      "type": "shell",
+      "command": "sh",
+      "args": [
+        "-c",
+        "if [ ! -f \"${workspaceFolder}/build-release/build.ninja\" ]; then meson setup \"${workspaceFolder}/build-release\" --buildtype=release; fi && ninja -C \"${workspaceFolder}/build-release\""
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "clear": true
+      },
+      "problemMatcher": {
+        "owner": "gcc",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.+):(\\d+):(\\d+):\\s+(warning|error):\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    }
+  ]
+}

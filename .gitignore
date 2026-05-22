@@ -1,0 +1,9 @@
+build/
+build-release/
+*.o
+*.obj
+*.exe
+*.log
+*.tmp
+*.swp
+perf.data*

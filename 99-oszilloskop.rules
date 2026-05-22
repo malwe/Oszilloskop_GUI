@@ -1,0 +1,11 @@
+# Allow the current user to access the ItsyBitsy 32u4 Oscilloscope
+# without needing root privileges.
+#
+# Install once:
+#   sudo cp 99-oszilloskop.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+# Then replug the USB device.
+
+SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2044", \
+    MODE="0660", GROUP="plugdev"
