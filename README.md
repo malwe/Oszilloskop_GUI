@@ -7,4 +7,4 @@ raylib dirs in meson.build anpassen
 meson setup bild
 ninja -C build
 
-./build/oszilloskop_gui
+(sudo) ./build/oszilloskop_gui
